@@ -1,0 +1,40 @@
+name: Баг
+description: Сообщить о проблеме в Stutter Guard
+title: "[Bug] "
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Версия
+      placeholder: v0.1.2
+    validations:
+      required: true
+  - type: input
+    id: windows
+    attributes:
+      label: Windows
+      placeholder: Windows 11 24H2
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Что произошло?
+      description: Опишите проблему и что ожидалось вместо этого.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Как повторить?
+      placeholder: |
+        1. Запустил...
+        2. Нажал...
+        3. Получил...
+    validations:
+      required: true
+  - type: textarea
+    id: system
+    attributes:
+      label: Система
+      placeholder: CPU, GPU, RAM, масштаб интерфейса Windows

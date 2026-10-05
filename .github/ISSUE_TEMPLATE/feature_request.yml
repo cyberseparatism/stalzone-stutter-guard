@@ -1,0 +1,18 @@
+name: Предложение
+description: Предложить улучшение
+title: "[Feature] "
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: Идея
+      description: Что именно стоит добавить или изменить?
+    validations:
+      required: true
+  - type: textarea
+    id: reason
+    attributes:
+      label: Зачем это нужно?
+      description: Какую реальную проблему это решает?
+    validations:
+      required: true

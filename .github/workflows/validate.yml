@@ -1,0 +1,44 @@
+name: PowerShell validation
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  syntax:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Parse PowerShell
+        shell: powershell
+        run: |
+          $errors = $null
+          [System.Management.Automation.Language.Parser]::ParseFile(
+            (Resolve-Path '.\StutterGuard.ps1'),
+            [ref]$null,
+            [ref]$errors
+          ) | Out-Null
+
+          if ($errors.Count -gt 0) {
+            $errors | Format-List
+            throw "PowerShell syntax validation failed."
+          }
+
+      - name: Verify required files
+        shell: powershell
+        run: |
+          foreach ($file in @(
+            'StutterGuard.ps1',
+            'Start-StutterGuard.cmd',
+            'README.md',
+            'LICENSE'
+          )) {
+            if (-not (Test-Path $file)) {
+              throw "Missing required file: $file"
+            }
+          }

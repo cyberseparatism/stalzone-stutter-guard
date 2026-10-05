@@ -1,0 +1,7 @@
+config.json
+state.json
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+.DS_Store
